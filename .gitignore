@@ -4,3 +4,8 @@
 *.jar
 *.war
 *.ear
+/build
+.project
+.classpath
+.settings
+.gradle
