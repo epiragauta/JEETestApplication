@@ -9,16 +9,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="employee")
+@Entity 
+//@Table(name="EMPLOYEE") // TOD change to employee
 @SuppressWarnings("serial")
 public class Employee implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
+	@Column(name="name")
 	private String name;
+	@Column(name="surname")
 	private String surname;
+	@Column(name="profit")
 	private int profit;
 	@Column(name="date_of_birth")
 	private int dateOfBirth;
@@ -73,6 +77,11 @@ public class Employee implements Serializable {
 
 	public void setDateOfBirth(int dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Employee (id: %d, name: %s, surname: %s, profit: %d, dateOfBirth: %d)", id, name, surname, profit, dateOfBirth);
 	}
 
 }

@@ -18,6 +18,8 @@ public interface EmployeeRemoteBusiness {
 
 	void removeEmployees(List<Employee> employees);
 
+	Employee getEmployee(int id);
+	
 	List<Employee> listEmployees();
 	
 	List<Employee> findEmployees(EmployeeSearchData data);

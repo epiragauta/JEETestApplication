@@ -7,11 +7,8 @@ repositories {
 }
 
 dependencies {
-	compile 'javax.ejb:javax.ejb-api:3.2'
+	compile 'javax.ejb:ejb-api:3.0'
 	compile 'org.eclipse.persistence:eclipselink:2.4.2'
 	testCompile 'junit:junit:4.11'
 	testCompile 'mysql:mysql-connector-java:5.1.26'
-	testCompile 'org.glassfish.extras:glassfish-embedded-all:3.2-b06'
-	testCompile 'javax:javaee-api:6.0'
-	//testCompile 'org.apache.derby:derby:10.10.1.1'
 }
