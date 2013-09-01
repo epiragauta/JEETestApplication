@@ -1,27 +1,33 @@
 package pl.pepuch.company.employee;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
 
 import pl.pepuch.company.employee.entity.Employee;
-import pl.pepuch.company.employee.entity.EmployeeSearchData;
 
 @Local
 public interface EmployeeRemoteBusiness {
 
-	void addEmployee(Employee employee);
+	Employee addEmployee(Employee employee);
 
-	void addEmployees(List<Employee> employees);
+	List<Employee> addEmployees(List<Employee> employees);
 
 	void removeEmployee(Employee employee);
 
 	void removeEmployees(List<Employee> employees);
 
-	Employee getEmployee(int id);
+	Employee getEmployee(long pesel);
 	
 	List<Employee> listEmployees();
 	
-	List<Employee> findEmployees(EmployeeSearchData data);
-
+	List<Employee> findEmployeeByName(String name);
+	
+	List<Employee> findEmployeeBySurname(String surname);
+	
+	List<Employee> findEmployeeByProfit(int min, int max);
+	
+	List<Employee> findEmployeeByDateOfBirth(Date startData, Date endData);
+	
 }
