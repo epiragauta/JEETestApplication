@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:ace="http://www.icefaces.org/icefaces/components"
+	xmlns:iscecore="http://www.icefaces.org/icefaces/core">
+
+<h:head>
+	<ice:outputStyle href="./xmlhttp/css/xp/xp.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body>
+	<div>
+	<h:form id="employeeForm">
+		<style type="text/css">
+			.ui-datatable-odd {
+				background-color:lightgray !important;
+				background-position-y: -1400px; /* IE7 hack */
+			}
+			.ui-widget {
+				font-size: 0.9em;
+			}
+		</style>
+		<ace:dataTable id="employeesListTable" value="#{employeeListBean.employees}" var="employee" paginator="true" paginatorPosition="bottom" rows="10">
+			<ace:column id="pesel" headerText="PESEL" sortBy="#{employee.pesel}" filterBy="#{employee.pesel}" filterMatchMode="contains">
+				<h:outputText id="peselCell" value="#{employee.pesel}"/>
+			</ace:column>
+			<ace:column id="name" headerText="name" sortBy="#{employee.name}" filterBy="#{employee.name}" filterMatchMode="contains">
+				<h:outputText id="nameCell" value="#{employee.name}"/>
+			</ace:column>
+			<ace:column id="surname" headerText="surname" sortBy="#{employee.surname}" filterBy="#{employee.surname}" filterMatchMode="contains">
+				<h:outputText id="surnameCell" value="#{employee.surname}"/>
+			</ace:column>
+			<ace:column id="profit" headerText="profit" sortBy="#{employee.profit}" filterBy="#{employee.profit}" filterMatchMode="contains">
+				<h:outputText id="profitCell" value="#{employee.profit}"/>
+			</ace:column>
+			<ace:column id="dateOfBirth" headerText="Date of birth" sortBy="#{employee.dateOfBirth}" filterBy="#{employee.dateOfBirth}" filterMatchMode="contains">
+				<h:outputText id="dateOfBirthCell" value="#{employee.dateOfBirth}">
+					<f:convertDateTime pattern="d-M-yyyy"/>
+				</h:outputText>
+			</ace:column>
+		</ace:dataTable>
+	</h:form>
+	</div>
+	<h:form id="addEmployeeForm">
+		<h:commandButton id="addEmployeeShowDialog" value="Add employee" onclick="addEmployeeDialog.show()"/>
+		<ace:dialog id="addEmployeeDialogId" widgetVar="addEmployeeDialog" header="Add employee" closeable="true" modal="true" draggable="false" width="600">
+			<h:panelGrid columns="3" width="100%">
+				<h:outputLabel id="employeePeselLabel" for="employeePesel" value="PESEL:"/>
+				<ace:maskedEntry id="employeePesel" value="#{employeeBean.pesel}" mask="99999999999" converterMessage="Must be 11th length number" />
+				<ace:message for="employeePesel" initEffect="bounce"/>
+				
+				<h:outputLabel id="employeeNameLabel" for="employeeName" value="Name:"/>
+				<h:inputText id="employeeName" value="#{employeeBean.name}"/>
+				<ace:message for="employeeName"/>
+				
+				<h:outputLabel id="employeeSurnameLabel" for="employeeSurname" value="Surname:"/>
+				<h:inputText id="employeeSurname" value="#{employeeBean.surname}"/>
+				<ace:message for="employeeSurname"/>
+				
+				<h:outputLabel id="employeeProfitLabel" for="employeeProfit" value="Profit:"/>
+				<h:inputText id="employeeProfit" value="#{employeeBean.profit}"/>
+				<ace:message for="employeeProfit"/>
+				
+				<h:outputLabel id="employeeDateOfBirthLabel" for="employeeDateOfBirth"/>
+				<ace:maskedEntry id="employeeDateOfBirth" value="#{employeeBean.dateOfBirth}" mask="99-99-9999">
+					<f:convertDateTime pattern="dd-MM-yyyy"/>
+				</ace:maskedEntry>
+				<ace:message for="employeeDateOfBirth"/>
+			</h:panelGrid>
+			<h:panelGrid columns="1" width="100%">
+				<h:commandButton id="addEmployeeSubmit" value="add employee" actionListener="#{employeeBean.add}"/>
+			</h:panelGrid>
+		</ace:dialog>
+	</h:form>
+</h:body>
+</html>
