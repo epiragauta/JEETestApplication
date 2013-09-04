@@ -1,6 +1,5 @@
 package pl.pepuch.company.employee;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -14,19 +13,16 @@ public class EmployeeBean {
 
 	@EJB(lookup="java:global/jee-ejb-company-git/EmployeeBean")
 	private EmployeeRemoteBusiness employeeBusiness;
-	private long pesel;
-	private String name;
-	private String surname;
-	private int profit;
-	private long dateOfBirth;
+	private Employee employee;
 
 	public void add(ActionEvent e) {
-		Employee employee = new Employee(pesel, name, surname, profit, new Date(dateOfBirth));
+		Employee employee = new Employee();
 		employeeBusiness.addEmployee(employee);
 	}
 	
-	public void remove(Employee e) {
-		employeeBusiness.removeEmployee(e);
+	public String remove() {
+		employeeBusiness.removeEmployee(employee);
+		return null;
 	}
 
 	public EmployeeRemoteBusiness getEmployeeBusiness() {
@@ -41,44 +37,11 @@ public class EmployeeBean {
 		return employeeBusiness.listEmployees();
 	}
 
-	public long getPesel() {
-		return pesel;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setPesel(long pesel) {
-		this.pesel = pesel;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public int getProfit() {
-		return profit;
-	}
-
-	public void setProfit(int profit) {
-		this.profit = profit;
-	}
-
-	public long getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(long dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-	
 }

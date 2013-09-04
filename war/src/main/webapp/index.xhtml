@@ -42,7 +42,9 @@
 				</h:outputText>
 			</ace:column>
 			<ace:column headerText="Remove">
-				<h:commandButton actionListener="#{employeeBean.remove(employee)}" value="Remove"/>
+				<h:commandButton action="#{employeeBean.remove}" value="Remove">
+					<f:setPropertyActionListener target="#{employeeBean.employee}" value="#{employee}"></f:setPropertyActionListener>
+				</h:commandButton>
 			</ace:column>
 		</ace:dataTable>
 	</h:form>
@@ -52,23 +54,23 @@
 		<ace:dialog id="addEmployeeDialogId" widgetVar="addEmployeeDialog" header="Add employee" closeable="true" modal="true" draggable="false" width="600">
 			<h:panelGrid columns="3" width="100%">
 				<h:outputLabel id="employeePeselLabel" for="employeePesel" value="PESEL:"/>
-				<ace:maskedEntry id="employeePesel" value="#{employeeBean.pesel}" mask="99999999999" converterMessage="Must be 11th length number" />
+				<ace:maskedEntry id="employeePesel" value="#{employeeBean.employee.pesel}" mask="99999999999" converterMessage="Must be 11th length number" />
 				<ace:message for="employeePesel" initEffect="bounce"/>
 				
 				<h:outputLabel id="employeeNameLabel" for="employeeName" value="Name:"/>
-				<h:inputText id="employeeName" value="#{employeeBean.name}"/>
+				<h:inputText id="employeeName" value="#{employeeBean.employee.name}"/>
 				<ace:message for="employeeName"/>
 				
 				<h:outputLabel id="employeeSurnameLabel" for="employeeSurname" value="Surname:"/>
-				<h:inputText id="employeeSurname" value="#{employeeBean.surname}"/>
+				<h:inputText id="employeeSurname" value="#{employeeBean.employee.surname}"/>
 				<ace:message for="employeeSurname"/>
 				
 				<h:outputLabel id="employeeProfitLabel" for="employeeProfit" value="Profit:"/>
-				<h:inputText id="employeeProfit" value="#{employeeBean.profit}"/>
+				<h:inputText id="employeeProfit" value="#{employeeBean.employee.profit}"/>
 				<ace:message for="employeeProfit"/>
 				
 				<h:outputLabel id="employeeDateOfBirthLabel" for="employeeDateOfBirth"/>
-				<ace:maskedEntry id="employeeDateOfBirth" value="#{employeeBean.dateOfBirth}" mask="99-99-9999">
+				<ace:maskedEntry id="employeeDateOfBirth" value="#{employeeBean.employee.dateOfBirth}" mask="99-99-9999">
 					<f:convertDateTime pattern="dd-MM-yyyy"/>
 				</ace:maskedEntry>
 				<ace:message for="employeeDateOfBirth"/>
