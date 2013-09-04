@@ -1,6 +1,7 @@
 package pl.pepuch.company.employee;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -23,6 +24,10 @@ public class EmployeeBean {
 		Employee employee = new Employee(pesel, name, surname, profit, new Date(dateOfBirth));
 		employeeBusiness.addEmployee(employee);
 	}
+	
+	public void remove(Employee e) {
+		employeeBusiness.removeEmployee(e);
+	}
 
 	public EmployeeRemoteBusiness getEmployeeBusiness() {
 		return employeeBusiness;
@@ -30,6 +35,10 @@ public class EmployeeBean {
 
 	public void setEmployeeBusiness(EmployeeRemoteBusiness employeeBusiness) {
 		this.employeeBusiness = employeeBusiness;
+	}
+	
+	public List<Employee> getEmployees() {
+		return employeeBusiness.listEmployees();
 	}
 
 	public long getPesel() {

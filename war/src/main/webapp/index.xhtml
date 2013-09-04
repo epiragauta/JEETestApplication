@@ -23,7 +23,7 @@
 				font-size: 0.9em;
 			}
 		</style>
-		<ace:dataTable id="employeesListTable" value="#{employeeListBean.employees}" var="employee" paginator="true" paginatorPosition="bottom" rows="10">
+		<ace:dataTable id="employeesListTable" value="#{employeeBean.employees}" var="employee" paginator="true" paginatorPosition="bottom" rows="10">
 			<ace:column id="pesel" headerText="PESEL" sortBy="#{employee.pesel}" filterBy="#{employee.pesel}" filterMatchMode="contains">
 				<h:outputText id="peselCell" value="#{employee.pesel}"/>
 			</ace:column>
@@ -40,6 +40,9 @@
 				<h:outputText id="dateOfBirthCell" value="#{employee.dateOfBirth}">
 					<f:convertDateTime pattern="d-M-yyyy"/>
 				</h:outputText>
+			</ace:column>
+			<ace:column headerText="Remove">
+				<h:commandButton actionListener="#{employeeBean.remove(employee)}" value="Remove"/>
 			</ace:column>
 		</ace:dataTable>
 	</h:form>
