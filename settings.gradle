@@ -1,0 +1,4 @@
+include ':war', ':ejb'
+
+project(':war').projectDir = "$rootDir/war" as File
+project(':ejb').projectDir = "$rootDir/ejb" as File
